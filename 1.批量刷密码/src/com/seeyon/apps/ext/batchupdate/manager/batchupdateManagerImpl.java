@@ -51,7 +51,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
                     LogRecord logRecord = new LogRecord();
                     logRecord.setId(System.currentTimeMillis());
                     logRecord.setUpdateUser(user.getLoginName());
-                    logRecord.setUpdateDate(new Timestamp(new Date().getTime()));
+                    logRecord.setUpdateDate(new Date());
                     logRecord.setOpType("更新");
                     logRecord.setOpContent("用户：" + orgPrincipal.getLoginName() + "的密码被重置了！");
                     logRecord.setOpResult("成功");
