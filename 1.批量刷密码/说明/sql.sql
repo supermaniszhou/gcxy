@@ -1,7 +1,7 @@
 CREATE table operation_log_record(
 id NUMBER primary key ,
 update_user varchar2(50),
-update_date date,
+update_date timestamp ,
 op_content VARCHAR2(2000),
 op_user_ip varchar(50),
 op_type varchar(50),
