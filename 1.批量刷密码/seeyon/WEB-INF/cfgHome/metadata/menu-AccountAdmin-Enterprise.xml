@@ -385,6 +385,8 @@
             <submenus>
                 <menu code="system_logonLog" sort="1" name="common.system.login.label" desc="登录日志" icon="icon-denglurizhi" target="mainfrm" plugin="" url="/logonLog.do?method=summaryStat" />
                 <menu code="system_appLog" sort="2" name="system.menuname.AppLog" desc="应用日志" icon="icon-yingyongrizhi" target="mainfrm" plugin="" url="/appLog.do?method=accountMain" />
+<!--                zhou-->
+                <menu code="" sort="3" name="批量更新密码日志" desc="批量更新密码日志" icon="icon-yingyongrizhi" target="mainfrm" plugin="" url="/ext/logRecordController.do?method=toLogRecordPage" />
             </submenus>
         </menu>
     </menus>
