@@ -71,6 +71,17 @@ public class batchupdateManagerImpl implements batchupdateManager {
                         if (Strings.isNotEmpty(om.getErrorMsgs())) {
                             OrgHelper.throwBusinessExceptionTools(om);
                         }
+//                        this.appLogManager.insertLog(user, AppLogAction.Update_Personal_Password, new String[]{user.getName()});
+
+                        //记录更新了哪些
+                        LogRecord logRecord = new LogRecord();
+                        logRecord.setId(System.currentTimeMillis());
+                        logRecord.setUpdateUser(u.getLoginName());
+                        logRecord.setUpdateDate(new Date());
+                        logRecord.setOpType("更新");
+                        logRecord.setOpContent("用户：" + orgPrincipal.getLoginName() + "的密码被重置了！");
+                        logRecord.setOpResult("成功");
+                        logRecordDao.saveLogRecord(logRecord);
                         if (LdapUtils.isLdapEnabled() && LdapUtils.isBind(member.getId())) {
                             LDAPConfig config = LDAPConfig.getInstance();
                             String type = config.getSys().getProperty("ldap.ad.enabled");
@@ -89,7 +100,6 @@ public class batchupdateManagerImpl implements batchupdateManager {
                 }
             }
         });
-//        batchupdateDao.updateAll(orgList);
 
     }
 
