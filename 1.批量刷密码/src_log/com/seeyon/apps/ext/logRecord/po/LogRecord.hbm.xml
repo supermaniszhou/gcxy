@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.seeyon.apps.ext.logRecord.po.LogRecord"
+           table="operation_log_record" lazy="false">
+        <id name="id" type="long" column="id">
+            <generator class="assigned"/>
+        </id>
+        <property name="updateUser" type="string" column="update_user"/>
+        <property name="updateDate" type="date" column="update_date"/>
+        <property name="opContent" type="string" column="op_content"/>
+        <property name="opUserIp" type="string" column="op_user_ip"/>
+        <property name="opType" type="string" column="op_type"/>
+        <property name="opModule" type="string" column="op_module"/>
+        <property name="opResult" type="string" column="op_resule"/>
+        <property name="extAttr1" type="string" column="ext_attr1"/>
+        <property name="extAttr2" type="string" column="ext_attr2"/>
+        <property name="extAttr3" type="string" column="ext_attr3"/>
+        <property name="extAttr4" type="string" column="ext_attr4"/>
+        <property name="extAttr5" type="string" column="ext_attr5"/>
+        <property name="extAttr6" type="string" column="ext_attr6"/>
+        <property name="extAttr7" type="string" column="ext_attr7"/>
+        <property name="extAttr8" type="string" column="ext_attr8"/>
+    </class>
+</hibernate-mapping>
