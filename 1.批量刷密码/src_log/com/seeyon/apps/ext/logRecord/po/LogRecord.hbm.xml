@@ -10,7 +10,7 @@
             <generator class="assigned"/>
         </id>
         <property name="updateUser" type="string" column="update_user"/>
-        <property name="updateDate" type="timestamp" column="update_date"/>
+        <property name="updateDate" type="date" column="update_date"/>
         <property name="opContent" type="string" column="op_content"/>
         <property name="opUserIp" type="string" column="op_user_ip"/>
         <property name="opType" type="string" column="op_type"/>
