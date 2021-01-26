@@ -63,7 +63,7 @@
     });
 
     function toUpdate() {
-        $.post("/seeyon/ext/logRecordController.do?method=doBatchUpdatePwd", null, function (res) {
+        $.post("/seeyon/ext/batchupdate.do?method=doBatchUpdatePwd", null, function (res) {
             if (res.code == 0) {
                 $("#info").append("刷新成功！")
             } else {

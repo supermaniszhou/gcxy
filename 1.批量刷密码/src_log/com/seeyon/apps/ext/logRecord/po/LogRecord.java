@@ -1,12 +1,13 @@
 package com.seeyon.apps.ext.logRecord.po;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class LogRecord {
 
     private Long id;
     private String updateUser;//操作者
-    private Date updateDate;//操作时间
+    private Timestamp updateDate;//操作时间
     private String opContent;//操作内容
     private String opUserIp;//操作者的ip
     private String opType;//操作类型
@@ -24,7 +25,7 @@ public class LogRecord {
     public LogRecord() {
     }
 
-    public LogRecord(Long id, String updateUser, Date updateDate, String opContent, String opUserIp, String opType, String opModule, String opResult, String extAttr1, String extAttr2, String extAttr3, String extAttr4, String extAttr5, String extAttr6, String extAttr7, String extAttr8) {
+    public LogRecord(Long id, String updateUser, Timestamp updateDate, String opContent, String opUserIp, String opType, String opModule, String opResult, String extAttr1, String extAttr2, String extAttr3, String extAttr4, String extAttr5, String extAttr6, String extAttr7, String extAttr8) {
         this.id = id;
         this.updateUser = updateUser;
         this.updateDate = updateDate;
@@ -59,11 +60,11 @@ public class LogRecord {
         this.updateUser = updateUser;
     }
 
-    public Date getUpdateDate() {
+    public Timestamp getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
 

@@ -12,6 +12,7 @@ import com.seeyon.apps.ext.batchupdate.dao.batchupdateDao;
 import com.seeyon.ctp.common.AppContext;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -50,9 +51,9 @@ public class batchupdateManagerImpl implements batchupdateManager {
                     LogRecord logRecord = new LogRecord();
                     logRecord.setId(System.currentTimeMillis());
                     logRecord.setUpdateUser(user.getLoginName());
-                    logRecord.setUpdateDate(new Date());
+                    logRecord.setUpdateDate(new Timestamp(new Date().getTime()));
                     logRecord.setOpType("更新");
-                    logRecord.setOpContent(orgPrincipal.getLoginName() + "的密码被重置了！");
+                    logRecord.setOpContent("用户：" + orgPrincipal.getLoginName() + "的密码被重置了！");
                     logRecord.setOpResult("成功");
                     logRecordDao.saveLogRecord(logRecord);
                 }

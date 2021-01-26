@@ -26,7 +26,7 @@ public class LogRecordDaoImpl implements LogRecordDao {
         StringBuilder sb = new StringBuilder();
         sb.append("from LogRecord l where 1=1 ");
         if (null != params.get("opContent") && !"".equals(params.get("opContent"))) {
-            sb.append(" and l.opContent like :opContent ");
+            sb.append(" and l.opContent like '%'||:opContent||'%' ");
             map.put("opContent",params.get("opContent")+"");
         }
         sb.append(" order by l.updateDate desc");

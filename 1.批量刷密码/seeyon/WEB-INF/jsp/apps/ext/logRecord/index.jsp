@@ -56,11 +56,11 @@
                         name: 'opContent',
                         width: '46%'
                     }
-                    , {
-                        display: "操作者的ip",
-                        name: 'opUserIp',
-                        width: '12%'
-                    }
+                    // , {
+                    //     display: "操作者的ip",
+                    //     name: 'opUserIp',
+                    //     width: '12%'
+                    // }
                     , {
                         display: "操作类型",
                         name: 'opType',
