@@ -90,7 +90,7 @@
                 },
                 isHaveIframe: true,
                 slideToggleBtn: true,
-                managerName: "lrManager",
+                managerName: "logRecordManager",
                 managerMethod: "selectAllPage",
 
             });
