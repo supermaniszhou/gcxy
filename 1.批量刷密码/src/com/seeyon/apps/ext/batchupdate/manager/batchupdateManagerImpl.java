@@ -16,7 +16,7 @@ import java.util.List;
 public class batchupdateManagerImpl implements batchupdateManager {
     private static final Log log = LogFactory.getLog(batchupdateManagerImpl.class);
 
-    private batchupdateDao batchupdateDao;
+    private batchupdateDao batchupdateDao = (batchupdateDao) AppContext.getBean("batchupdateDaoDemo");
 
     @Override
     public void batchUpdate() throws NoSuchAlgorithmException {
@@ -40,10 +40,5 @@ public class batchupdateManagerImpl implements batchupdateManager {
 
     }
 
-    public batchupdateDao getbatchupdateDao() {
-        if (batchupdateDao == null) {
-            batchupdateDao = (batchupdateDao) AppContext.getBean("batchupdateDaoDemo");
-        }
-        return batchupdateDao;
-    }
+
 }
