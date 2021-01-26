@@ -49,36 +49,36 @@
             var grid = $("#logRecordTable").ajaxgrid({
                 // gridType: 'autoGrid',
                 colModel: [
-                    // {
-                    //     display: "操作者",
-                    //     name: 'updateUser',
-                    //     width: '12%'
-                    // }
-                    // , {
-                    //     display: "操作时间",
-                    //     name: 'updateDate',
-                    //     width: '8%'
-                    // }
+                    {
+                        display: "操作者",
+                        name: 'updateUser',
+                        width: '12%'
+                    }
+                    , {
+                        display: "操作时间",
+                        name: 'updateDate',
+                        width: '8%'
+                    },
                     {
                         display: "操作内容",
                         name: 'opContent',
                         width: '46%'
                     }
-                    // , {
-                    //     display: "操作者的ip",
-                    //     name: 'opUserIp',
-                    //     width: '12%'
-                    // }
-                    // , {
-                    //     display: "操作类型",
-                    //     name: 'opType',
-                    //     width: '8%'
-                    // }
-                    // , {
-                    //     display: "操作结果",
-                    //     name: 'opResult',
-                    //     width: '8%'
-                    // }
+                    , {
+                        display: "操作者的ip",
+                        name: 'opUserIp',
+                        width: '12%'
+                    }
+                    , {
+                        display: "操作类型",
+                        name: 'opType',
+                        width: '8%'
+                    }
+                    , {
+                        display: "操作结果",
+                        name: 'opResult',
+                        width: '8%'
+                    }
                 ],
                 height: 200,
                 showTableToggleBtn: true,
