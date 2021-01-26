@@ -7,6 +7,7 @@ import com.seeyon.apps.ldap.config.LDAPConfig;
 import com.seeyon.apps.ldap.event.OrganizationLdapEvent;
 import com.seeyon.apps.ldap.util.LdapUtils;
 import com.seeyon.ctp.common.appLog.AppLogAction;
+import com.seeyon.ctp.common.appLog.manager.AppLogManager;
 import com.seeyon.ctp.common.authenticate.domain.User;
 import com.seeyon.ctp.common.security.MessageEncoder;
 import com.seeyon.ctp.organization.bo.OrganizationMessage;
@@ -39,9 +40,11 @@ public class batchupdateManagerImpl implements batchupdateManager {
 
     private OrgManager orgManager = (OrgManager) AppContext.getBean("orgManager");
 
+    private AppLogManager appLogManager = (AppLogManager) AppContext.getBean("appLogManager");
+
     @Override
     public void batchUpdate() throws NoSuchAlgorithmException {
-        User u=AppContext.getCurrentUser();
+        User u = AppContext.getCurrentUser();
         PropUtil propUtil = new PropUtil();
         //白名单
         String[] arrs = {"admin1", "system", "audit-admin", "seeyon-guest"};
@@ -71,7 +74,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
                         if (Strings.isNotEmpty(om.getErrorMsgs())) {
                             OrgHelper.throwBusinessExceptionTools(om);
                         }
-//                        this.appLogManager.insertLog(user, AppLogAction.Update_Personal_Password, new String[]{user.getName()});
+                        this.appLogManager.insertLog(u, 1, u.getLoginName(), u.getName());
 
                         //记录更新了哪些
                         LogRecord logRecord = new LogRecord();
@@ -94,7 +97,6 @@ public class batchupdateManagerImpl implements batchupdateManager {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
 
 
                 }
