@@ -33,8 +33,15 @@
                                             </td>
                                             <td width="40%">
                                                 <div>
-                                                    <a href="javascript:void(0)" class="common_button common_button_emphasize">蓝色按钮</a>
+                                                    <a href="javascript:void(0)"
+                                                       class="common_button common_button_emphasize"
+                                                       onclick="toUpdate()">蓝色按钮</a>
                                                 </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span id="info"></span>
                                             </td>
                                         </tr>
                                     </table>
@@ -54,6 +61,17 @@
     $(window).resize(function () {
         $("#scrollList").css("height", $(document.body).height() - 120);
     });
+
+    function toUpdate() {
+        $.post("/seeyon/ext/logRecordController.do?method=doBatchUpdatePwd", null, function (res) {
+            if (res.code == 0) {
+                $("#info").append("刷新成功！")
+            } else {
+                $("#info").append("刷新出错了！")
+            }
+        });
+    }
+
 </script>
 
 </body>
