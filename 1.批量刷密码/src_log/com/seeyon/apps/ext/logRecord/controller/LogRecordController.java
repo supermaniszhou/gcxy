@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LogRecordController extends BaseController {
 
     public ModelAndView toLogRecordPage() {
-        ModelAndView mav = new ModelAndView("apps/ext/batchupdate/index");
+        ModelAndView mav = new ModelAndView("apps/ext/logRecord/index");
         return mav;
     }
 

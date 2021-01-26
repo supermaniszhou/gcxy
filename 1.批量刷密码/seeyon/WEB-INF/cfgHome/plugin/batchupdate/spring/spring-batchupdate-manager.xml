@@ -2,5 +2,4 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans default-autowire="byName">
     <bean id="batchupdateManager" class="com.seeyon.apps.ext.batchupdate.manager.batchupdateManagerImpl"></bean>
-    <bean id="logRecordManager" class="com.seeyon.apps.ext.logRecord.manager.LogRecordManagerImpl"/>
 </beans>

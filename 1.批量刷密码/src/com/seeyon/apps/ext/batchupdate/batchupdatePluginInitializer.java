@@ -9,6 +9,7 @@ public class batchupdatePluginInitializer extends AbstractSystemInitializer {
         System.out.println("初始化batchupdate");
     }
 
+
     @Override
     public void destroy() {
         System.out.println("销毁batchupdate");
