@@ -12,110 +12,110 @@
             var lrManager = new logRecordManager();
 
             //加载表格
-            // var o = {};
-            // var searchobj = $.searchCondition({
-            //     top: 10,
-            //     right: 10,
-            //     //点搜索按钮取值
-            //     searchHandler: function () {
-            //         var params = searchobj.g.getReturnValue();
-            //         if (params != null) {
-            //             o = {};
-            //             if (params.condition == 'meetingname') {
-            //                 o.meetingname = params.value;
-            //             }
-            //             if (params.condition == 'perName') {
-            //                 o.perName = params.value;
-            //             }
-            //             if (params.condition == 'starttime') {
-            //                 if (params.value[0] != "") {
-            //                     o.beginTime = params.value[0];
-            //                 }
-            //                 if (params.value[1] != "") {
-            //                     o.endTime = params.value[1];
-            //                 }
-            //             }
-            //         }
-            //         $('#logRecordTable').ajaxgridLoad(o);
-            //     },
-            //     conditions: [{
-            //         id: 'meetingname',
-            //         name: 'meetingname',
-            //         type: 'input',
-            //         text: "会议室名称",//标题
-            //         value: 'meetingname',
-            //         maxLength: 100
-            //     }, {
-            //         id: 'perName',
-            //         name: 'perName',
-            //         type: 'input',
-            //         text: "申请人",
-            //         value: 'perName',
-            //         maxLength: 100
-            //     }, {
-            //         id: 'starttime',
-            //         name: 'starttime',
-            //         type: 'datemulti',
-            //         text: "会议开始时间",//发起时间
-            //         value: 'starttime',
-            //         dateTime: false,
-            //         ifFormat: '%Y-%m-%d'
-            //     }]
-            // });
-            // //列表
-            // var grid = $("#logRecordTable").ajaxgrid({
-            //     // gridType: 'autoGrid',
-            //     colModel: [
-            //         {
-            //             display: "申请会议室",
-            //             name: 'opContent',
-            //             width: '12%'
-            //         }
-            //         // , {
-            //         //     display: "申请人",
-            //         //     name: 'pername',
-            //         //     width: '8%'
-            //         // }, {
-            //         //     display: "申请人电话",
-            //         //     name: 'sqrdh',
-            //         //     width: '12%'
-            //         // }, {
-            //         //     display: "申请人所在部门",
-            //         //     name: 'deptname',
-            //         //     width: '12%'
-            //         // }, {
-            //         //     display: "开始时间",
-            //         //     name: 'startdatetime',
-            //         //     width: '12%'
-            //         // }, {
-            //         //     display: "结束时间",
-            //         //     name: 'enddatetime',
-            //         //     width: '12%'
-            //         // }, {
-            //         //     display: "用途",
-            //         //     name: 'description',
-            //         //     width: '12%'
-            //         // }, {
-            //         //     display: "会场要求",
-            //         //     name: 'hcyq',
-            //         //     width: '12%'
-            //         // }
-            //         ],
-            //     height: 200,
-            //     showTableToggleBtn: true,
-            //     parentId: 'center',
-            //     vChange: true,
-            //     vChangeParam: {
-            //         overflow: "hidden",
-            //         autoResize: true
-            //     },
-            //     isHaveIframe: true,
-            //     slideToggleBtn: true,
-            //     managerName: "lrManager",
-            //     managerMethod: "selectAllPage",
-            //
-            // });
-            // $('#logRecordTable').ajaxgridLoad(o);
+            var o = {};
+            var searchobj = $.searchCondition({
+                top: 10,
+                right: 10,
+                //点搜索按钮取值
+                searchHandler: function () {
+                    var params = searchobj.g.getReturnValue();
+                    if (params != null) {
+                        o = {};
+                        if (params.condition == 'meetingname') {
+                            o.meetingname = params.value;
+                        }
+                        if (params.condition == 'perName') {
+                            o.perName = params.value;
+                        }
+                        if (params.condition == 'starttime') {
+                            if (params.value[0] != "") {
+                                o.beginTime = params.value[0];
+                            }
+                            if (params.value[1] != "") {
+                                o.endTime = params.value[1];
+                            }
+                        }
+                    }
+                    $('#logRecordTable').ajaxgridLoad(o);
+                },
+                conditions: [{
+                    id: 'meetingname',
+                    name: 'meetingname',
+                    type: 'input',
+                    text: "会议室名称",//标题
+                    value: 'meetingname',
+                    maxLength: 100
+                }, {
+                    id: 'perName',
+                    name: 'perName',
+                    type: 'input',
+                    text: "申请人",
+                    value: 'perName',
+                    maxLength: 100
+                }, {
+                    id: 'starttime',
+                    name: 'starttime',
+                    type: 'datemulti',
+                    text: "会议开始时间",//发起时间
+                    value: 'starttime',
+                    dateTime: false,
+                    ifFormat: '%Y-%m-%d'
+                }]
+            });
+            //列表
+            var grid = $("#logRecordTable").ajaxgrid({
+                // gridType: 'autoGrid',
+                colModel: [
+                    {
+                        display: "申请会议室",
+                        name: 'opContent',
+                        width: '12%'
+                    }
+                    // , {
+                    //     display: "申请人",
+                    //     name: 'pername',
+                    //     width: '8%'
+                    // }, {
+                    //     display: "申请人电话",
+                    //     name: 'sqrdh',
+                    //     width: '12%'
+                    // }, {
+                    //     display: "申请人所在部门",
+                    //     name: 'deptname',
+                    //     width: '12%'
+                    // }, {
+                    //     display: "开始时间",
+                    //     name: 'startdatetime',
+                    //     width: '12%'
+                    // }, {
+                    //     display: "结束时间",
+                    //     name: 'enddatetime',
+                    //     width: '12%'
+                    // }, {
+                    //     display: "用途",
+                    //     name: 'description',
+                    //     width: '12%'
+                    // }, {
+                    //     display: "会场要求",
+                    //     name: 'hcyq',
+                    //     width: '12%'
+                    // }
+                ],
+                height: 200,
+                showTableToggleBtn: true,
+                parentId: 'center',
+                vChange: true,
+                vChangeParam: {
+                    overflow: "hidden",
+                    autoResize: true
+                },
+                isHaveIframe: true,
+                slideToggleBtn: true,
+                managerName: "lrManager",
+                managerMethod: "selectAllPage",
+
+            });
+            $('#logRecordTable').ajaxgridLoad(o);
 
         });
     </script>
