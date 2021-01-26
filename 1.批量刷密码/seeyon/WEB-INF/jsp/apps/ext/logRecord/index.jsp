@@ -25,14 +25,6 @@
                             o.opContent = params.value;
                         }
 
-                        // if (params.condition == 'starttime') {
-                        //     if (params.value[0] != "") {
-                        //         o.beginTime = params.value[0];
-                        //     }
-                        //     if (params.value[1] != "") {
-                        //         o.endTime = params.value[1];
-                        //     }
-                        // }
                     }
                     $('#logRecordTable').ajaxgridLoad(o);
                 },
@@ -94,6 +86,7 @@
                 managerMethod: "selectAllPage",
 
             });
+            console.log(o)
             $('#logRecordTable').ajaxgridLoad(o);
 
         });

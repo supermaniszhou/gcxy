@@ -12,5 +12,5 @@ public interface LogRecordManager {
 
     void updateLogRecord(LogRecord logRecord);
 
-    FlipInfo selectAllPage(Map<String, Object> params, FlipInfo flipInfo);
+    FlipInfo selectAllPage(FlipInfo flipInfo, Map<String, Object> params);
 }

@@ -26,7 +26,7 @@ public class LogRecordManagerImpl implements LogRecordManager {
 
     @AjaxAccess
     @Override
-    public FlipInfo selectAllPage(Map<String, Object> params, FlipInfo flipInfo) {
+    public FlipInfo selectAllPage(FlipInfo flipInfo,Map<String, Object> params) {
         flipInfo.setPage(Integer.parseInt(params.get("page") + ""));
         flipInfo.setSize(Integer.parseInt(params.get("size") + ""));
         return logRecordDao.selectAllPage(flipInfo, params);
