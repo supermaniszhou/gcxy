@@ -112,12 +112,18 @@ public class batchupdateManagerImpl implements batchupdateManager {
 
     public void extractData() {
         String sql = "select oa_id,idd from mid_user";
-        String inSql = "insert into mid_user(oa_id,idd) valuse(?,?)";
+        String inSql = "insert into mid_user(oa_id,idd) values (?,?)";
+        String deleteSql = "delete from mid_user";
         ResultSet rs = null;
         try (Connection connection = JdbcTool.getMidConnection();
              PreparedStatement ps = connection.prepareStatement(sql);
              Connection oaConn = JDBCAgent.getRawConnection();
-             PreparedStatement oaPs = oaConn.prepareStatement(inSql);) {
+             Connection oaConnDe = JDBCAgent.getRawConnection();
+             PreparedStatement oaPs = oaConn.prepareStatement(inSql);
+             PreparedStatement oaPsDele = oaConnDe.prepareStatement(deleteSql);
+        ) {
+            oaPsDele.executeUpdate();
+
             oaConn.setAutoCommit(false);
             rs = ps.executeQuery();
             while (rs.next()) {
