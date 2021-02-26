@@ -22,8 +22,5 @@ oa_id number primary key ,
 idd varchar2(50)
 );
 
-create table mid_user_record(
-oa_id number ,
-flag varchar2(1)
-)
+
 
