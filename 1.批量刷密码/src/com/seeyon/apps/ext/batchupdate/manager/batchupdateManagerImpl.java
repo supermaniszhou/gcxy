@@ -159,8 +159,8 @@ public class batchupdateManagerImpl implements batchupdateManager {
                 midUser = new MidUser();
                 midUser.setId(rs.getBigDecimal("id"));
                 midUser.setLoginName(rs.getString("login_name"));
-                midUser.setCreateTime(rs.getDate("create_time"));
-                midUser.setUpdateTime(rs.getDate("update_time"));
+                midUser.setCreateTime(rs.getTimestamp("create_time"));
+                midUser.setUpdateTime(rs.getTimestamp("update_time"));
                 midUser.setIdd(rs.getString("idd"));
                 midUser.setMemberId(rs.getBigDecimal("member_id"));
                 list.add(midUser);
