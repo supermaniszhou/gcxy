@@ -8,18 +8,14 @@ import com.seeyon.apps.ext.logRecord.po.LogRecord;
 import com.seeyon.apps.ldap.config.LDAPConfig;
 import com.seeyon.apps.ldap.event.OrganizationLdapEvent;
 import com.seeyon.apps.ldap.util.LdapUtils;
-import com.seeyon.ctp.common.appLog.AppLogAction;
 import com.seeyon.ctp.common.appLog.manager.AppLogManager;
 import com.seeyon.ctp.common.authenticate.domain.User;
-import com.seeyon.ctp.common.security.MessageEncoder;
 import com.seeyon.ctp.organization.bo.OrganizationMessage;
 import com.seeyon.ctp.organization.bo.V3xOrgMember;
 import com.seeyon.ctp.organization.bo.V3xOrgPrincipal;
 import com.seeyon.ctp.organization.dao.OrgHelper;
 import com.seeyon.ctp.organization.manager.OrgManager;
-import com.seeyon.ctp.organization.po.OrgPrincipal;
 import com.seeyon.ctp.organization.principal.PrincipalManager;
-import com.seeyon.ctp.util.DBAgent;
 import com.seeyon.ctp.util.JDBCAgent;
 import com.seeyon.ctp.util.Strings;
 import org.apache.commons.logging.Log;
@@ -33,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class batchupdateManagerImpl implements batchupdateManager {
@@ -57,8 +54,10 @@ public class batchupdateManagerImpl implements batchupdateManager {
         List<MidUser> list = this.joinIDD();
         //
         PrincipalManager principalManager = (PrincipalManager) AppContext.getBean("principalManager");
-        String password = propUtil.getValueByKey("init.pwd");
+//        String password = propUtil.getValueByKey("init.pwd");
+        AtomicReference<String> password = new AtomicReference<>("");
         list.forEach(orgPrincipal -> {
+            password.set(orgPrincipal.getIdd().substring(12));
             Long createTime = orgPrincipal.getCreateTime().getTime();
             Long updateTime = orgPrincipal.getUpdateTime().getTime();
 //            差值
@@ -70,7 +69,8 @@ public class batchupdateManagerImpl implements batchupdateManager {
                         V3xOrgMember memberBeforeUpdate = new V3xOrgMember();
                         memberBeforeUpdate.setId(member.getId());
                         memberBeforeUpdate.setV3xOrgPrincipal(member.getV3xOrgPrincipal());
-                        V3xOrgPrincipal newOrgPrincipal = new V3xOrgPrincipal(member.getId(), orgPrincipal.getLoginName(), password);
+
+                        V3xOrgPrincipal newOrgPrincipal = new V3xOrgPrincipal(member.getId(), orgPrincipal.getLoginName(), password.get());
                         member.setV3xOrgPrincipal(newOrgPrincipal);
                         V3xOrgMember newMember = new V3xOrgMember();
                         newMember.setId(member.getId());
@@ -102,8 +102,6 @@ public class batchupdateManagerImpl implements batchupdateManager {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-
                 }
             }
         });
