@@ -27,6 +27,9 @@ public class batchupdateController extends BaseController {
     public ModelAndView doBatchUpdatePwd(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<>();
         try {
+            //先把身份证信息从中间库中抽取到OA的mid_user表中
+            manager.extractData();
+            //执行刷库操作
             manager.batchUpdate();
             map.put("code", 0);
             map.put("message", "success");

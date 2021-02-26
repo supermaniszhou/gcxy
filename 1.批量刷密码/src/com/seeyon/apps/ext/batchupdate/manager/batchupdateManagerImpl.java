@@ -1,5 +1,7 @@
 package com.seeyon.apps.ext.batchupdate.manager;
 
+import com.seeyon.apps.ext.batchupdate.po.MidUser;
+import com.seeyon.apps.ext.batchupdate.util.JdbcTool;
 import com.seeyon.apps.ext.batchupdate.util.PropUtil;
 import com.seeyon.apps.ext.logRecord.dao.LogRecordDao;
 import com.seeyon.apps.ext.logRecord.po.LogRecord;
@@ -17,6 +19,8 @@ import com.seeyon.ctp.organization.dao.OrgHelper;
 import com.seeyon.ctp.organization.manager.OrgManager;
 import com.seeyon.ctp.organization.po.OrgPrincipal;
 import com.seeyon.ctp.organization.principal.PrincipalManager;
+import com.seeyon.ctp.util.DBAgent;
+import com.seeyon.ctp.util.JDBCAgent;
 import com.seeyon.ctp.util.Strings;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,7 +28,7 @@ import com.seeyon.apps.ext.batchupdate.dao.batchupdateDao;
 import com.seeyon.ctp.common.AppContext;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -49,7 +53,8 @@ public class batchupdateManagerImpl implements batchupdateManager {
         //白名单
         String[] arrs = {"admin1", "system", "audit-admin", "seeyon-guest"};
         List<String> wList = Arrays.asList(arrs);
-        List<OrgPrincipal> list = batchupdateDao.selectAll();
+//        List<OrgPrincipal> list = batchupdateDao.selectAll();
+        List<MidUser> list = this.joinIDD();
         //
         PrincipalManager principalManager = (PrincipalManager) AppContext.getBean("principalManager");
         String password = propUtil.getValueByKey("init.pwd");
@@ -61,7 +66,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
             if (difference.longValue() == 0l) {
                 if (!wList.contains(orgPrincipal.getLoginName())) {
                     try {
-                        V3xOrgMember member = this.orgManager.getMemberById(orgPrincipal.getMemberId());
+                        V3xOrgMember member = this.orgManager.getMemberById(orgPrincipal.getMemberId().longValue());
                         V3xOrgMember memberBeforeUpdate = new V3xOrgMember();
                         memberBeforeUpdate.setId(member.getId());
                         memberBeforeUpdate.setV3xOrgPrincipal(member.getV3xOrgPrincipal());
@@ -105,5 +110,58 @@ public class batchupdateManagerImpl implements batchupdateManager {
 
     }
 
+    public void extractData() {
+        String sql = "select oa_id,idd from mid_user";
+        String inSql = "insert into mid_user(oa_id,idd) valuse(?,?)";
+        ResultSet rs = null;
+        try (Connection connection = JdbcTool.getMidConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             Connection oaConn = JDBCAgent.getRawConnection();
+             PreparedStatement oaPs = oaConn.prepareStatement(inSql);) {
+            oaConn.setAutoCommit(false);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                oaPs.setBigDecimal(1, rs.getBigDecimal("oa_id"));
+                oaPs.setString(2, rs.getString("idd"));
+                oaPs.addBatch();
+            }
+            oaPs.executeBatch();
+            oaConn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != rs) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
+    @Override
+    public List<MidUser> joinIDD() {
+        String sql = "select p.id,p.login_name,p.create_time,p.update_time,p.member_id,m.idd from ORG_PRINCIPAL p,mid_user m where p.MEMBER_ID=m.oa_id";
+        ResultSet rs = null;
+        List<MidUser> list = new ArrayList<>();
+        try (Connection connection = JDBCAgent.getRawConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);) {
+            rs = ps.executeQuery();
+            MidUser midUser = null;
+            while (rs.next()) {
+                midUser = new MidUser();
+                midUser.setId(rs.getBigDecimal("id"));
+                midUser.setLoginName(rs.getString("login_name"));
+                midUser.setCreateTime(rs.getDate("create_time"));
+                midUser.setUpdateTime(rs.getDate("update_time"));
+                midUser.setIdd(rs.getString("idd"));
+                midUser.setMemberId(rs.getBigDecimal("member_id"));
+                list.add(midUser);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
