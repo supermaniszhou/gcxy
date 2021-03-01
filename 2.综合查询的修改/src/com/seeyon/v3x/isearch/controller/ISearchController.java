@@ -1,6 +1,8 @@
 package com.seeyon.v3x.isearch.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +44,44 @@ public class ISearchController extends BaseController {
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView ret = new ModelAndView("isearch/home");
         List<ISearchAppObject> appList = ISearchManagerRegister.getISearchAppObjectList();
-        ret.addObject("appList", appList);
+
+        /*[工程学院综合查询，设定查询类型] 2021-03-01 zhou 修改 开始*/
+        //1:协同，4：公文，78：是信息发布（新闻和公告）
+        Integer[] categorys = new Integer[]{1, 4, 78};
+        List<ISearchAppObject> appListNew = new ArrayList<>();
+        appList.stream().forEach(is -> {
+            if (null != is.getAppEnumKey()) {
+                int key = is.getAppEnumKey().intValue();
+                Arrays.asList(categorys).forEach(cate -> {
+                    if (key == cate.intValue()) {
+                        appListNew.add(is);
+                    }
+                });
+            }
+        });
+
+        ISearchAppObject _78 = new ISearchAppObject();
+        //公文
+        _78.setAppEnumKey(4);
+        _78.setHasPigeonholed(false);
+        _78.setSortId(98);
+        _78.setCustomContentType(false);
+        _78.setNeedDocLibSelect(false);
+        _78.setHasPigeonholed(true);
+        appListNew.add(_78);
+        //信息发布
+        _78 = new ISearchAppObject();
+        _78.setAppEnumKey(78);
+        _78.setHasPigeonholed(false);
+        _78.setSortId(99);
+        _78.setCustomContentType(false);
+        _78.setNeedDocLibSelect(false);
+        _78.setHasPigeonholed(true);
+        appListNew.add(_78);
+
+        /*[工程学院综合查询，设定查询类型] 2021-03-01 zhou 修改 结束*/
+
+        ret.addObject("appList", appListNew);
         User user = AppContext.getCurrentUser();
         if (AppContext.hasPlugin("doc")) {
             List<DocLibBO> libs = docApi.findDocLibs(user.getId(), user.getLoginAccount());
@@ -94,9 +133,9 @@ public class ISearchController extends BaseController {
             manager = ISearchManagerRegister.getISearchManagerByAppKey(String.valueOf(ApplicationCategoryEnum.doc.key()));
         }
         //zhou:暂时注释掉
-		if(cm.getPigeonholedFlag()){//归档的单独处理
-			manager = ISearchManagerRegister.getISearchManagerByAppKey(ISearchManager.ISEARCH_MANAGER_PIGEONHOLE_APPKEY);
-		}
+        if (cm.getPigeonholedFlag()) {//归档的单独处理
+            manager = ISearchManagerRegister.getISearchManagerByAppKey(ISearchManager.ISEARCH_MANAGER_PIGEONHOLE_APPKEY);
+        }
         if ("1".equals(cm.getAppKey()) && "2".equals(pigeonholedFlag0)) { //转储数据单独处理
             manager = ISearchManagerRegister.getISearchManagerByAppKey(ISearchManager.ISEARCH_MANAGER_DUMPDATA_APPKEY);
         }
