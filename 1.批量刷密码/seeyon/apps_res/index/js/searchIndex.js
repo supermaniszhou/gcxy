@@ -11,6 +11,8 @@
  * 根据relatedModules数据，渲染右侧的模块
  * 渲染模块的逻辑：从缓存中取tpl模板和js，如果没有就通过ajax请求对应模块的html和js文件，然后渲染，最后执行afterInit（如果有的话）
  */
+    //zhou:不需要的tab页签，暂使用数组存储
+var noNeedTo=['application','collaboration','schedule','ThirdPartyIntegration','vreport'];
 
 $(function() {
     // 页签
@@ -20,8 +22,6 @@ $(function() {
         styleType: 1,
         items: []
     };
-    //zhou:不需要的tab页签，暂使用数组存储
-    var noNeedTo=['application','collaboration','schedule','ThirdPartyIntegration'];
 
     for (var i = 0; i < allModules.length; i++) {
         var item = {};
@@ -273,11 +273,17 @@ searchResult.prototype.initFilterData = function(result, from, moduleName) {
         id: "searchApp",
         items: []
     };
+    console.log(range);
+    //zhou
+    //zhou:不需要的tab页签，暂使用数组存储
+    var noNeedToStr=noNeedTo.join(",");
     for (var i = 0; i < range.length; i++) {
         var item = JSON.parse(JSON.stringify(range[i]));
         item.type = "checkbox";
         item.checked = true;
-        searchAppData.items.push(item);
+        if(noNeedToStr.indexOf(range[i].id)==-1){
+            searchAppData.items.push(item);
+        }
     }
     if (range.length > 0) {
         filterRange.push(searchAppData);
