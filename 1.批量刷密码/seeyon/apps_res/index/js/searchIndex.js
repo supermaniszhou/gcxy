@@ -273,9 +273,8 @@ searchResult.prototype.initFilterData = function(result, from, moduleName) {
         id: "searchApp",
         items: []
     };
-    console.log(range);
+    // console.log(range);
     //zhou
-    //zhou:不需要的tab页签，暂使用数组存储
     var noNeedToStr=noNeedTo.join(",");
     for (var i = 0; i < range.length; i++) {
         var item = JSON.parse(JSON.stringify(range[i]));
