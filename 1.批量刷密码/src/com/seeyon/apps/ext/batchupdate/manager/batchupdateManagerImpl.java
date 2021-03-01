@@ -109,7 +109,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
     }
 
     public void extractData() {
-        String sql = "select oa_id,idd from mid_user";
+        String sql = "select oa_id,p_id from mid_user";
         String inSql = "insert into mid_user(oa_id,idd) values (?,?)";
         String deleteSql = "delete from mid_user";
         ResultSet rs = null;
@@ -126,7 +126,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
             rs = ps.executeQuery();
             while (rs.next()) {
                 oaPs.setBigDecimal(1, rs.getBigDecimal("oa_id"));
-                oaPs.setString(2, rs.getString("idd"));
+                oaPs.setString(2, rs.getString("p_id"));
                 oaPs.addBatch();
             }
             oaPs.executeBatch();
