@@ -20,6 +20,9 @@ $(function() {
         styleType: 1,
         items: []
     };
+    //zhou:不需要的tab页签，暂使用数组存储
+    var noNeedTo=['application','collaboration','schedule','ThirdPartyIntegration'];
+
     for (var i = 0; i < allModules.length; i++) {
         var item = {};
         item.id = "searchTab_" + allModules[i].id;
@@ -33,8 +36,13 @@ $(function() {
         item.clickFun = function(index) {
             changeTabs(allModules[index].id);
         };
-        tabsData.items.push(item);
+        //zhou
+        var arrStr=noNeedTo.join(",");
+        if(arrStr.indexOf(allModules[i].id)==-1){
+            tabsData.items.push(item);
+        }
     }
+
     // 渲染：页签
     var renderTabsObj = new CtpUiTabs(document.getElementById("headerTabs"), tabsData);
 
@@ -60,7 +68,6 @@ $(function() {
 // 点击了搜索按钮后的动作
 var searchAction = function(type) {
     searchKeyword = document.getElementById("searchWord").value.trim();
-    //zhou:注释
     // if (searchKeyword === "") {
     //     searchResultCache.alert.searchWord && searchResultCache.alert.searchWord.close();
     //     delete searchResultCache.alert.searchWord;
@@ -517,13 +524,13 @@ searchResult.prototype.getSearchAppValue = function(modulesList, from) {
         }
         // “应用，协同，表单，公文，文档，视频”合并成一条请求，不分页。
         // if (from === "init" || from === "changeTabs" || from === "searchButton" || from === "pager" && searchResultCache.currentPage === "1") {
-            delete modulesObj.application;
-            delete modulesObj.collaboration;
-            delete modulesObj.form;
-            delete modulesObj.edoc;
-            delete modulesObj.doc;
-            delete modulesObj.video;
-            modulesObj.searchMultiApp = this.getModule4NInOne();
+        delete modulesObj.application;
+        delete modulesObj.collaboration;
+        delete modulesObj.form;
+        delete modulesObj.edoc;
+        delete modulesObj.doc;
+        delete modulesObj.video;
+        modulesObj.searchMultiApp = this.getModule4NInOne();
         // }
     }
     return modulesObj;
