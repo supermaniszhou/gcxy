@@ -5,6 +5,7 @@
 <script type="text/javascript" src="<c:url value='/apps_res/isearch/js/isearch.js${v3x:resSuffix()}' />"></script>
 <html>
 <head>
+
     <meta HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
     <title></title>
     <c:set var="current_user_id" value="${v3x:currentUser().id}"/>
