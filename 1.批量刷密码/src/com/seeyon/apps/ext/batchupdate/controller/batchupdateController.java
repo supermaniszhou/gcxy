@@ -33,7 +33,7 @@ public class batchupdateController extends BaseController {
             manager.batchUpdate();
             map.put("code", 0);
             map.put("message", "success");
-        } catch (NoSuchAlgorithmException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             map.put("code", -1);
             map.put("message", "error");

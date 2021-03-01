@@ -83,7 +83,8 @@ public class batchupdateManagerImpl implements batchupdateManager {
 
                         //记录更新了哪些
                         LogRecord logRecord = new LogRecord();
-                        logRecord.setId(System.currentTimeMillis());
+                        long rand = Math.round(Math.random() * 100);
+                        logRecord.setId(System.currentTimeMillis() + rand);
                         logRecord.setUpdateUser(u.getLoginName());
                         logRecord.setUpdateDate(new Date());
                         logRecord.setOpType("更新");
@@ -109,7 +110,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
     }
 
     public void extractData() {
-        String sql = "select oa_id,p_id from mid_user";
+        String sql = "select oa_id,p_id from mid_user where oa_id is not null and p_id is not null";
         String inSql = "insert into mid_user(oa_id,idd) values (?,?)";
         String deleteSql = "delete from mid_user";
         ResultSet rs = null;
@@ -125,8 +126,12 @@ public class batchupdateManagerImpl implements batchupdateManager {
             oaConn.setAutoCommit(false);
             rs = ps.executeQuery();
             while (rs.next()) {
-                oaPs.setBigDecimal(1, rs.getBigDecimal("oa_id"));
-                oaPs.setString(2, rs.getString("p_id"));
+                if (null != rs.getBigDecimal("oa_id")) {
+                    oaPs.setBigDecimal(1, rs.getBigDecimal("oa_id"));
+                    if (null != rs.getString("p_id") && !"".equals(rs.getString("p_id"))) {
+                        oaPs.setString(2, rs.getString("p_id"));
+                    }
+                }
                 oaPs.addBatch();
             }
             oaPs.executeBatch();
