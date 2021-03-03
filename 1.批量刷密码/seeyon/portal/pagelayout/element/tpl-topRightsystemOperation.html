@@ -4,53 +4,57 @@
     <div class="topRightsystemOperation" id="topRightsystemOperationWidth" style="{{# if( vPortal.themeHotspots.skin && vPortal.themeHotspots.skin.topRightsystemOperationBgc){  }} background-color:{{=vPortal.themeHotspots.skin.topRightsystemOperationBgc}}   {{# } }}">
         <ul class="topIco">
             {{# if(document.getElementById("onlineNumArea") == null){ }}
-        	<li class="account3in1">
-        		{{#  var _currentState = vPortal.currentState === "" ? "0" : vPortal.currentState; }}
-        		<div class="onlineNum hand"  style="{{# if(d.btnonlineNum != '1'){ }}display: none{{# } }}" class="onlineNumArea" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.onlineMember();"><span id="onlineNum">{{ vPortal.onlineNumber }}</span>{{ $.i18n('common.people.label') }}</div>
-        		<div class="smallHead" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.showPersonCenter()"><img id="memberImageUrl" width="22" height="22" src="{{ vPortal.memberImageUrl }}"></div>
-        		<em></em>
-				{{# if(vPortal.smsSendEnabled == true){}}
-				<i class="vportal vp-message" onclick="sendSMSV3X();"></i>
-				{{# } }}
-        	</li>
-            {{# } }}
-        	<li class="signBtn" title="{{=$.i18n('menu.sign.label')}}" style="{{# if(d.btnSign != '1' || vPortal.cardEnabled==false){ }}display: none{{# } }}">
-        		<span onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.onlineCardClick();" style="{{# if(d.btnSignStyle == 'icon'){ }}display: none{{# } }}">{{=$.i18n("menu.sign.label")}}</span>
-        		<i onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.onlineCardClick();" class="vportal vp-signIn" style="{{# if(d.btnSignStyle != 'icon'){ }}display: none{{# } }}"></i>
-        		<em></em>
-        	</li>
-			<li class="appIco" title="{{=$.i18n('portal.hotspot.button.appcenter.label')}}" style="{{# if(d.btnAppCenter != '1'){ }}display: none{{# } }}"  onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.appcenterClick();"><i class="vportal vp-XXApp"></i><em></em></li>
-			<li class="searchIco"  title="{{=$.i18n('menu.search.label')}}" style="{{# if(d.btnSearch != '1' || vPortal.searchEnabled==false){ }}display: none{{# } }}"><i onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.searchOpen();" class="vportal vp-search-large"></i>
+            <li class="account3in1">
+                {{#  var _currentState = vPortal.currentState === "" ? "0" : vPortal.currentState; }}
+                <div class="onlineNum hand"  style="{{# if(d.btnonlineNum != '1'){ }}display: none{{# } }}" class="onlineNumArea" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.onlineMember();"><span id="onlineNum">{{ vPortal.onlineNumber }}</span>{{ $.i18n('common.people.label') }}</div>
+                <div class="smallHead" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.showPersonCenter()"><img id="memberImageUrl" width="22" height="22" src="{{ vPortal.memberImageUrl }}"></div>
                 <em></em>
-            	<div class="searchContainer" id="searchContainer">
-            		<i onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.searchClose();" class="vportal vp-close searchClose"></i>
-					<input type="text" maxlength="20" placeholder="{{=$.i18n("portal.index.search.txt")}}" id="searchAreaInput" onfocus="javascript:autoCompletionFun.action(this,'autoCompletion')">
-					<span class="common_button topRightSearchButton" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.search('searchAreaInput');">{{=$.i18n("menu.search.label")}}</span>
-                    <div id="autoCompletion" class="autoCompletion"></div>
-            	</div>
+                {{# if(vPortal.smsSendEnabled == true){}}
+                <i class="vportal vp-message" onclick="sendSMSV3X();"></i>
+                {{# } }}
             </li>
-			<!-- <li class="backIco" style="{{# if(d.btnBack != '1'){ }}display: none{{# } }} "><i class="vportal vp-back"></i><em></em></li>
-			<li class="forwardIco" style="{{# if(d.btnGo != '1'){ }}display: none{{# } }} "><i class="vportal vp-forward"></i><em></em></li> -->
-			<li class="refreshIco" title="{{=$.i18n('menu.refresh.label')}}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.refreshPageClick()" style="{{# if(d.btnRefresh != '1'){ }}display: none{{# } }} "><i class="vportal vp-refresh"></i><em></em></li>
-			<li class="messageIco" title="{{=$.i18n('menu.ucMsg.label')}}" style="{{# if(d.btnMessage != '1' || vPortal.ucEnabled != 'true' ){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.msgClick();"><i class="vportal vp-msg"></i><em></em></li>
+            {{# } }}
+            <li class="signBtn" title="{{=$.i18n('menu.sign.label')}}" style="{{# if(d.btnSign != '1' || vPortal.cardEnabled==false){ }}display: none{{# } }}">
+                <span onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.onlineCardClick();" style="{{# if(d.btnSignStyle == 'icon'){ }}display: none{{# } }}">{{=$.i18n("menu.sign.label")}}</span>
+                <i onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.onlineCardClick();" class="vportal vp-signIn" style="{{# if(d.btnSignStyle != 'icon'){ }}display: none{{# } }}"></i>
+                <em></em>
+            </li>
+            <li class="appIco" title="{{=$.i18n('portal.hotspot.button.appcenter.label')}}" style="{{# if(d.btnAppCenter != '1'){ }}display: none{{# } }}"  onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.appcenterClick();"><i class="vportal vp-XXApp"></i><em></em></li>
+            <li class="searchIco"  title="{{=$.i18n('menu.search.label')}}" style="{{# if(d.btnSearch != '1' || vPortal.searchEnabled==false){ }}display: none{{# } }}">
+                <span onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.toopenSearchClick();"></span>
+                <i onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.toopenSearchClick();" class="vportal vp-search-large"></i>
+                <em></em>
+                <!--                zhou:注释-->
+                <!--                            	<div class="searchContainer" id="searchContainer">-->
+                <!--                            		<i onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.searchClose();" class="vportal vp-close searchClose"></i>-->
+                <!--                					<input type="text" maxlength="20" placeholder="{{=$.i18n("portal.index.search.txt")}}" id="searchAreaInput" onfocus="javascript:autoCompletionFun.action(this,'autoCompletion')">-->
+                <!--                					<span class="common_button topRightSearchButton" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.search('searchAreaInput');">{{=$.i18n("menu.search.label")}}</span>-->
+                <!--                                    <div id="autoCompletion" class="autoCompletion"></div>-->
+                <!--                            	</div>-->
+
+            </li>
+            <!-- <li class="backIco" style="{{# if(d.btnBack != '1'){ }}display: none{{# } }} "><i class="vportal vp-back"></i><em></em></li>
+            <li class="forwardIco" style="{{# if(d.btnGo != '1'){ }}display: none{{# } }} "><i class="vportal vp-forward"></i><em></em></li> -->
+            <li class="refreshIco" title="{{=$.i18n('menu.refresh.label')}}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.refreshPageClick()" style="{{# if(d.btnRefresh != '1'){ }}display: none{{# } }} "><i class="vportal vp-refresh"></i><em></em></li>
+            <li class="messageIco" title="{{=$.i18n('menu.ucMsg.label')}}" style="{{# if(d.btnMessage != '1' || vPortal.ucEnabled != 'true' ){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.msgClick();"><i class="vportal vp-msg"></i><em></em></li>
 
             <li class="onlineServiceIco" title="{{=$.i18n('menu.onlineService.label')}}" style="{{# if(d.btnonlineService != '1' || vPortal.OnlineCustomerServiceEnabled != true ){ }}display: none{{# } }}"onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.onlineServiceClick();"><i class="vportal vp-OnlineService"></i><em></em></li>
             <li class="settingIco" onmouseover="vPortalMainFrameElements.topRightsystemOperation.showPersonContainer()" onmouseleave="vPortalMainFrameElements.topRightsystemOperation.hidePersonContainer()">
                 <i class="vportal vp-setting"></i>
                 <iframe id="personContainer_iframe" allowtransparency="true" class="personContainer_iframe" frameborder="0"></iframe>
-				<div class="personContainer" id="personContainer">
-			        <ul class="pushdownSecond">
-<!--                        zhou-->
-<!--						<li id="skin" title="{{=$.i18n('portal.changeSkin.lable')}}" style="{{# if(d.btnHomeSet != '1'){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.showSkinPanle();getCtpTop().openSkinPanle = '1';">{{=$.i18n("portal.changeSkin.lable")}}</li>-->
-					    <li id="mySet" title="{{=$.i18n('menu.personal.affair')}}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.mySetClick();">{{=$.i18n("menu.personal.affair")}}</li>
-					    {{# if(vPortal.locale == "zh_CN" ){ }}
+                <div class="personContainer" id="personContainer">
+                    <ul class="pushdownSecond">
+                        <!--                        zhou-->
+                        <!--						<li id="skin" title="{{=$.i18n('portal.changeSkin.lable')}}" style="{{# if(d.btnHomeSet != '1'){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.showSkinPanle();getCtpTop().openSkinPanle = '1';">{{=$.i18n("portal.changeSkin.lable")}}</li>-->
+                        <li id="mySet" title="{{=$.i18n('menu.personal.affair')}}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.mySetClick();">{{=$.i18n("menu.personal.affair")}}</li>
+                        {{# if(vPortal.locale == "zh_CN" ){ }}
                         <li id="productView_btn" title="{{=$.i18n('menu.productNavigation.label')}}" style="display: none" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.productViewClick();">{{=$.i18n("menu.productNavigation.label")}}</li>
                         {{# } }}
-					    <li id="viewSalary" title="{{=$.i18n('menu.hr.salary.show')}}" style="{{# if(d.btnSalaryView != '1' || vPortal.salaryEnabled==false){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.viewSalaryClick();">{{=$.i18n("menu.hr.salary.show")}}</li>
-					    <li id="about" title="{{=$.i18n('product.about.title')}}"  style="{{# if(d.btnAbout == '0'){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.showAbout();">{{=$.i18n("product.about.title")}}</li>
-						<li id="logout" title="{{=$.i18n('seeyon.top.close.alt')}}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.logoutClick();">{{=$.i18n("seeyon.top.close.alt")}}</li>
-					</ul>
-				</div>
+                        <li id="viewSalary" title="{{=$.i18n('menu.hr.salary.show')}}" style="{{# if(d.btnSalaryView != '1' || vPortal.salaryEnabled==false){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.viewSalaryClick();">{{=$.i18n("menu.hr.salary.show")}}</li>
+                        <li id="about" title="{{=$.i18n('product.about.title')}}"  style="{{# if(d.btnAbout == '0'){ }}display: none{{# } }}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.showAbout();">{{=$.i18n("product.about.title")}}</li>
+                        <li id="logout" title="{{=$.i18n('seeyon.top.close.alt')}}" onclick="javascript:vPortalMainFrameElements.topRightsystemOperation.logoutClick();">{{=$.i18n("seeyon.top.close.alt")}}</li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>
