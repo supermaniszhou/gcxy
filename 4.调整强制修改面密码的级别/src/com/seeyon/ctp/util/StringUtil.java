@@ -537,7 +537,8 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String getPasswdStrong(String passwd){
-		String result = "4";
+        //zhou: 当从第三方系统进入OA系统时，要求客户修改密码，密码强度默认为4（最好），现在修改为2（中）
+		String result = "2";
 		if(Strings.isBlank(passwd)){
 			return result;
 		}
