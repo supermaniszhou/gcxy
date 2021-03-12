@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.seeyon.apps.ext.gcxym3.po">
+    <class name="Formmain0918" table="FORMMAIN_0918" lazy="false">
+        <id name="id" type="long" column="ID">
+            <generator class="assigned"/>
+        </id>
+        <property name="state" type="long" column="STATE"/>
+        <property name="startMemberId" type="string" column="START_MEMBER_ID"/>
+        <property name="startDate" type="timestamp" column="START_DATE"/>
+        <property name="approveMemberId" type="string" column="APPROVE_MEMBER_ID"/>
+        <property name="approveDate" type="timestamp" column="APPROVE_DATE"/>
+        <property name="finishedflag" type="long" column="FINISHEDFLAG"/>
+        <property name="ratifyflag" type="long" column="RATIFYFLAG"/>
+        <property name="ratifyMemberId" type="string" column="RATIFY_MEMBER_ID"/>
+        <property name="ratifyDate" type="timestamp" column="RATIFY_DATE"/>
+        <property name="sort" type="long" column="SORT"/>
+        <property name="modifyMemberId" type="string" column="MODIFY_MEMBER_ID"/>
+        <property name="modifyDate" type="timestamp" column="MODIFY_DATE"/>
+
+        <property name="field0001" type="string" column="FIELD0001"/>
+        <property name="field0002" type="string" column="FIELD0002"/>
+        <property name="field0003" type="string" column="FIELD0003"/>
+        <property name="field0004" type="string" column="FIELD0004"/>
+        <property name="field0005" type="string" column="FIELD0005"/>
+        <property name="field0006" type="string" column="FIELD0006"/>
+        <property name="receiveUnit" type="string" column="RECEIVE_UNIT"/>
+    </class>
+</hibernate-mapping>
