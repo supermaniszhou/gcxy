@@ -17,6 +17,7 @@ public class Formmain0917 extends BasePO {
     public Formmain0917() {
     }
 
+
     public Formmain0917(String field0003, String field0001, String field0002, String field0004, String field0005, String field0006, String field0007, String field0008, String field0009, String receiveUnit) {
         this.field0003 = field0003;
         this.field0001 = field0001;

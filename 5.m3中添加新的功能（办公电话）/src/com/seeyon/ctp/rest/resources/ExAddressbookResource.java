@@ -26,7 +26,7 @@ public class ExAddressbookResource extends BaseResource {
     private Gcxym3Manager gcxym3Manager = (Gcxym3Manager) AppContext.getBean("gcxym3Manager");
 
     @POST
-    @Path("xntl")
+    @Path("xntlListDate")
     @Produces({"application/json"})
     @RestInterfaceAnnotation
     public Response xntlListDate(Map<String, String> params) {
@@ -36,20 +36,19 @@ public class ExAddressbookResource extends BaseResource {
     }
 
     @POST
-    @Path("bgdh")
+    @Path("bgdhListDate")
     @Produces({"application/json"})
     @RestInterfaceAnnotation
     public Response bgdhListDate(Map<String, String> params) {
         //分页
         FlipInfo flipInfo = super.getFlipInfo();
+        flipInfo.setPage(Integer.parseInt(params.get("pageNo")));
+        flipInfo.setSize(Integer.parseInt(params.get("pageSize")));
         flipInfo.setNeedTotal(true);
         User user = AppContext.getCurrentUser();
-
-//        if (null == params || "".equals(params)) {
-//            params = new HashMap<>();
-//            params.put("input", "83105550");
-//        }
-        gcxym3Manager.getBgdhList(flipInfo, params);
+        Map<String, String> map = new HashMap<>();
+        map.put("field0001",params.get("input"));
+        gcxym3Manager.getBgdhList(flipInfo, map);
 
         return Response.ok(flipInfo).build();
     }
