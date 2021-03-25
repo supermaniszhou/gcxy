@@ -18,11 +18,11 @@ public class Gcxym3DaoImpl implements Gcxym3Dao {
                 sb.append(" field0004 like '%'||:field0001||'%' or  field0005 like '%'||:field0001||'%' or  field0006 like '%'||:field0001||'%' or  field0007 like '%'||:field0001||'%' or field0009 like '%'||:field0001||'%'  ");
                 DBAgent.find(sb.toString(), params, flipInfo);
             } else {
-                sb.append(" where 1=1 ");
+                sb.append(" where 1=2 ");
                 DBAgent.find(sb.toString(), null, flipInfo);
             }
         } else {
-            sb.append(" where 1=1 ");
+            sb.append(" where 1=2 ");
             DBAgent.find(sb.toString(), null, flipInfo);
         }
         return flipInfo;
@@ -33,13 +33,18 @@ public class Gcxym3DaoImpl implements Gcxym3Dao {
         StringBuffer sb = new StringBuffer();
         sb.append(" from Formmain0918 ");
         if (null != params) {
-            if (null != params.get("field0001") && !"".equals(params.get("field0001"))) {
+            String key = (String) params.get("field0001");
+            if (null != params.get("field0001") && !"".equals(key)) {
                 sb.append(" where field0001 like '%'||:field0001||'%' or field0002 like '%'||:field0001||'%' or field0003 like '%'||:field0001||'%' or field0004 like '%'||:field0001||'%' or field0005 like '%'||:field0001||'%' or field0006 like '%'||:field0001||'%'  ");
+                DBAgent.find(sb.toString(), params, flipInfo);
+            } else {
+                sb.append(" where 1=2 ");
+                DBAgent.find(sb.toString(), null, flipInfo);
             }
         } else {
-            sb.append(" where 1=1 ");
+            sb.append(" where 1=2 ");
+            DBAgent.find(sb.toString(), params, flipInfo);
         }
-        DBAgent.find(sb.toString(), params, flipInfo);
         return flipInfo;
     }
 }

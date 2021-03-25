@@ -30,9 +30,20 @@ public class ExAddressbookResource extends BaseResource {
     @Produces({"application/json"})
     @RestInterfaceAnnotation
     public Response xntlListDate(Map<String, String> params) {
+        //分页
+        FlipInfo flipInfo = super.getFlipInfo();
+        flipInfo.setPage(Integer.parseInt(params.get("pageNo")));
+        flipInfo.setSize(Integer.parseInt(params.get("pageSize")));
+        flipInfo.setNeedTotal(true);
+        User user = AppContext.getCurrentUser();
+        Map<String, String> map = null;
+        if (null != params.get("keyWord") && !"".equals(params.get("keyWord"))) {
+            map = new HashMap<>();
+            map.put("field0001", params.get("keyWord"));
+        }
+        gcxym3Manager.getXntlList(flipInfo, map);
 
-        Map<String, Object> map = null;
-        return Response.ok(map).build();
+        return Response.ok(flipInfo).build();
     }
 
     @POST
@@ -46,8 +57,11 @@ public class ExAddressbookResource extends BaseResource {
         flipInfo.setSize(Integer.parseInt(params.get("pageSize")));
         flipInfo.setNeedTotal(true);
         User user = AppContext.getCurrentUser();
-        Map<String, String> map = new HashMap<>();
-        map.put("field0001",params.get("input"));
+        Map<String, String> map = null;
+        if (null != params.get("keyWord") && !"".equals(params.get("keyWord"))) {
+            map = new HashMap<>();
+            map.put("field0001", params.get("keyWord"));
+        }
         gcxym3Manager.getBgdhList(flipInfo, map);
 
         return Response.ok(flipInfo).build();
