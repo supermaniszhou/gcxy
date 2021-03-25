@@ -1,0 +1,19 @@
+{
+    "dependencies":{
+        "cmp":"${data:modulepath.cmp.path}",
+        "zhoumobile":"${data:modulepath.v5.zhoumobile}",
+        "common":"${data:modulepath.common.common}"
+    },
+    "modulepath":{
+        "cmp":{
+            "path":"/seeyon/m3/cmp"
+        },
+        "v5":{
+            "zhoumobile":"/seeyon/m3/apps/v5/zhoumobile"
+        },
+        "common":{
+            "common":"/seeyon/m3/apps/v5/commons"
+        }
+    },
+    "version":"v1.0.0"
+}

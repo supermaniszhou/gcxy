@@ -1,0 +1,20 @@
+{
+    "dependencies":{
+        "cmp":"${data:modulepath.cmp.path}/v",
+        "zhoumobile":"${data:modulepath.v5.zhoumobile}/v",
+        "common":"${data:modulepath.common.common}/v"
+    },
+    "modulepath":{
+        "cmp":{
+            "path":"http://cmp"
+        },
+        "v5":{
+            "zhoumobile":"http://zhoumobile.v5.cmp"
+        },
+        "common":{
+            "common":"http://commons.v5.cmp"
+        }
+    },
+    "version":"v1.0.0",
+    "cordova":"<script src=\"${data:dependencies.cmp}\/js/cordova\/__CMPSHELL_PLATFORM__\/cordova.js\"></script>\r\n<script src=\"${data:dependencies.cmp}\/js/cordova\/cordova-plugins.js\"></script>"
+}

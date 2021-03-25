@@ -1,0 +1,20 @@
+{
+    "dependencies":{
+        "cmp":"${data:modulepath.cmp.path}",
+        "xntl":"${data:modulepath.v5.xntl}",
+        "common":"${data:modulepath.common.common}"
+
+    },
+    "modulepath":{
+        "cmp":{
+            "path":"/seeyon/m3/cmp"
+        },
+        "v5":{
+            "xntl":"/seeyon/m3/apps/v5/xntl"
+        },
+        "common":{
+            "common":"/seeyon/m3/apps/v5/commons"
+        }
+    },
+    "version":"v1.0.0"
+}

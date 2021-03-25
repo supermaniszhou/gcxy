@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>zhoumobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="${data:dependencies.cmp}/css/cmp.css${data:buildversion}"/> <!--导入cmp平台的基础样式-->
+    <link rel="stylesheet" href="${data:dependencies.cmp}/css/cmp-listView.css">
+    <link rel="stylesheet" href="${data:dependencies.cmp}/css/cmp-picker.css">
+    <link rel="stylesheet" href="${data:dependencies.cmp}/css/cmp-search.css">
+    <link rel="stylesheet" type="text/css" href="${data:dependencies.cmp}/css/cmp-dateCalender.css">
+
+    <link rel="stylesheet" href="${data:dependencies.zhoumobile}/css/zhoumobile.css${data:buildversion}"/>
+    <!--导入应用模块样式文件-->
+</head>
+<body class="cmp-fullscreen">
+<!--cmp-flex-header-->
+<header id="he" class="cmp-bar cmp-bar-nav cmp-flex-header">
+    <div class="cmp-header-left cancelBtn">
+        <span class="cmp-icon see-icon-v5-common-arrow-back"></span>
+    </div>
+    <div class="cmp-title">
+        <span>办公电话</span>
+    </div>
+    <div class="cmp-header-right ">
+    </div>
+</header>
+
+<div id="newsDiv" class="cmp-p-bg cmp-content cmp-content-none position_relative">
+    <div class="cmp-control-content cmp-active" id="cmp-control">
+        <div class="page-shadow-line">
+            <div id="searchbgdh">
+                <div id="searchHeader" class="cmp-search-box" style="padding:0px;margin-top: 50px;">
+                    <div class="cmp-segmented_title_content cmp-white-bg">
+                        <form action="#" onsubmit="return false;">
+                            <div class="cmp-content-title-search cmp-white-bg">
+                                <div class="cmp-input-row cmp-search">
+                                    <input type="search" disabled placeholder="" class="cmp-input-bg cmp-input-clear">
+                                    <span class="cmp-icon cmp-hidden cmp-icon-clear"></span>
+                                    <span class="cmp-placeholder cmp-sup-fc2 cmp-input-bg">
+                                        <span class="cmp-icon cmp-icon-search cmp-sup-fc2"></span>
+                                        <span class="text-search"><i18n key="zhoumobile.h5.search"></i18n></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="reSearch" class="position_relative cmp-search-content" style="display: none;">
+                    <div class="cmp-segmented-control cmp-search-title ">
+                        <div class="cmp-search-item">
+                            <span class="title" id="cmp_search_title"></span>
+                            <span class="cmp-icon cmp-icon-arrowdown icon_select"></span>
+                        </div>
+                        <div id="toSearch" class="cmp-search-item">
+                            <div id="searchText" class="item text cmp-active">
+                                <input id="searchTextValue" type="text" readonly>
+                                <span id="searchResultSpan" style="display:none;"></span>
+                            </div>
+                            <div id="searchDate" class="item date">
+                                <input id="searchDateBeg" class="cmp-search-date_btn" type="text" readonly>
+                                <span>-</span>
+                                <input id="searchDateEnd" class="cmp-search-date_btn" type="text" id="date_end" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="cmp-search-item">
+                            <span id="cancelSearch" class="gotoSearch"><i18n key="news.h5.cancel"></i18n></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 列表展示的 -->
+            <div style="overflow:auto;">
+                <div style="margin-top: 5px;" id="dataCommonDiv" class="cmp-content position_relative cmp-content-none">
+                    <div class=" cmp-control-content cmp-active">
+                        <div id="bgdhWrapper" class="cmp-scroll-wrapper">
+                            <div class="cmp-scroll">
+                                <ul id="bgdhList" class="cmp-list-content approval_list_content col cmp-table-view col-list">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="${data:dependencies.zhoumobile}/i18n/zhoumobile_zh_CN.js${data:buildversion}"></script><!--导入中文国际化资源-->
+<script src="${data:dependencies.cmp}/js/cmp-i18n.js${data:buildversion}"></script><!--导入cmp平台的国际化组件-->
+<script type="text/javascript">
+    cmp.i18n.init("${data:modulepath.v5.zhoumobile}/i18n/", "zhoumobile", function () {   //国际化资源的初始化
+        //业务逻辑
+    });
+    var _bgdhPath = "${data:dependencies.zhoumobile}";
+</script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cordova/__CMPSHELL_PLATFORM__/cordova.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cordova/cordova-plugins.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp.js${data:buildversion}"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-listView.js"></script>
+<script type="text/javascript" src="${data:dependencies.zhoumobile}/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-imgCache.js"></script>
+<script type="text/javascript" src="${data:dependencies.common}/m3-jssdk.js"></script>
+
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-nav.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-dateCalender.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-dtPicker-calender.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-picker.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-dtPicker.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-groupSearch.js"></script>
+<script type="text/javascript" src="${data:dependencies.cmp}/js/cmp-search.js"></script>
+<!--导入cmp平台的基础js文件库-->
+<script type="text/javascript" src="${data:dependencies.zhoumobile}/js/mobile-jssdk.js${data:buildversion}"></script>
+<script type="text/javascript" src="${data:dependencies.zhoumobile}/js/mobileUtil.js${data:buildversion}"></script>
+<script type="text/javascript" src="${data:dependencies.zhoumobile}/js/index.js${data:buildversion}"></script>
+
+<!--导入模块应用的入口函数-->
+<!--js模板-->
+<script type="text/html" id="list_bgdh_tpl">
+    <% for(var i = 0,len = this.length;i < len; i++){ %>
+    <% var obj= this[i];%>
+    <li class="cmp-list-cell cmp-table-view-cell treatment">
+        <!-- 内容区域 -->
+        <div class="cmp-list-cell-info" style="width: 100%;">
+            <span class="cmp-ellipsis cmp-pull-left list_title_name"><%=obj.field0001%></span>
+
+            <h6 class="cmp-ellipsis list_cont_info">
+                <span class="cmp-ellipsis cmp-h5 cmp-pull-left list_title_time">电话：<%=(null!=(obj.field0002)?obj.field0002:"")%> </span><br>
+                <span class="cmp-ellipsis cmp-h5 cmp-pull-left list_title_time">短号：<%=(null!=(obj.field0004)?obj.field0004:"")%> </span><br>
+                <span class="cmp-ellipsis cmp-h5 cmp-pull-left list_title_time">部门：<%=(null!=(obj.field0003)?obj.field0003:"")%> </span><br>
+                <span class="cmp-ellipsis cmp-h5 cmp-pull-left list_title_time">校区：<%=(null!=(obj.field0005)?obj.field0005:"")%> </span><br>
+                <span class="cmp-ellipsis cmp-h5 cmp-pull-left list_title_time">楼宇：<%=(null!=(obj.field0006)?obj.field0006:"")%> </span><br>
+                <span class="cmp-ellipsis cmp-h5 cmp-pull-left list_title_time">房间号：<%=(null!=(obj.field0007)?obj.field0007:"")%> </span>
+            </h6>
+            <!--<span class="cmp-icon cmp-icon-paperclip accessory_icon cmp-pull-right"></span>-->
+        </div>
+    </li>
+    <%}%>
+</script>
+
+
+</html>
