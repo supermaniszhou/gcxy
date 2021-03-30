@@ -110,9 +110,9 @@ public class batchupdateManagerImpl implements batchupdateManager {
     }
 
     public void extractData() {
-        String sql = "select oa_id,p_id from mid_user where oa_id is not null and p_id is not null";
-        String inSql = "insert into mid_user(oa_id,idd) values (?,?)";
-        String deleteSql = "delete from mid_user";
+        String sql = "select oa_id,p_id from mid_user_idd where oa_id is not null and p_id is not null";
+        String inSql = "insert into mid_user_idd(oa_id,idd) values (?,?)";
+        String deleteSql = "delete from mid_user_idd";
         ResultSet rs = null;
         try (Connection connection = JdbcTool.getMidConnection();
              PreparedStatement ps = connection.prepareStatement(sql);
@@ -151,7 +151,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
 
     @Override
     public List<MidUser> joinIDD() {
-        String sql = "select p.id,p.login_name,p.create_time,p.update_time,p.member_id,m.idd from ORG_PRINCIPAL p,mid_user m where p.MEMBER_ID=m.oa_id";
+        String sql = "select p.id,p.login_name,p.create_time,p.update_time,p.member_id,m.idd from ORG_PRINCIPAL p,mid_user_idd m where p.MEMBER_ID=m.oa_id";
         ResultSet rs = null;
         List<MidUser> list = new ArrayList<>();
         try (Connection connection = JDBCAgent.getRawConnection();
