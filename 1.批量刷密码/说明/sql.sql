@@ -17,7 +17,7 @@ CREATE table operation_log_record(
     ext_attr8 varchar2(1000)
 );
 
-create table mid_user(
+create table mid_user_idd(
 oa_id number primary key ,
 idd varchar2(50)
 );
