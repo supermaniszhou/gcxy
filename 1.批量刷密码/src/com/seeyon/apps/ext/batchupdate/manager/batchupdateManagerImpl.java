@@ -110,7 +110,7 @@ public class batchupdateManagerImpl implements batchupdateManager {
     }
 
     public void extractData() {
-        String sql = "select oa_id,p_id from mid_user_idd where oa_id is not null and p_id is not null";
+        String sql = "select oa_id,p_id from mid_user where oa_id is not null and p_id is not null";
         String inSql = "insert into mid_user_idd(oa_id,idd) values (?,?)";
         String deleteSql = "delete from mid_user_idd";
         ResultSet rs = null;
